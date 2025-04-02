@@ -1,5 +1,6 @@
 package me.Angelo.movieapp
 
+import me.Angelo.movieapp.movieSearchScreen
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -17,8 +18,11 @@ import androidx.compose.ui.Modifier
 import kotlinx.coroutines.launch
 import me.Angelo.movieapp.service.MovieService
 
+
+
 @Composable
-fun MovieSearchScreen() {
+fun movieSearchScreen(onMovieClick: (Movie) -> Unit)
+ {
     var query by remember { mutableStateOf("") }
     var movies by remember { mutableStateOf(listOf<Movie>()) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
@@ -71,6 +75,7 @@ fun MovieSearchScreen() {
                 Column(
                     modifier = Modifier
                         .padding(bottom = 16.dp)
+                        .clickable { onMovieClick(movie) }
                 ) {
                     AsyncImage(
                         model = movie.poster,

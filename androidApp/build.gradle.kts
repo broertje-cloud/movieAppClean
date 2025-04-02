@@ -44,6 +44,10 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.7.8")
     implementation("androidx.compose.ui:ui-tooling-preview:1.7.8")
     debugImplementation("androidx.compose.ui:ui-tooling:1.7.8")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

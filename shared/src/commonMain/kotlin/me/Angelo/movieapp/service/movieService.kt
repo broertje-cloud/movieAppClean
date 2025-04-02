@@ -1,6 +1,7 @@
 package me.Angelo.movieapp.service
 
 import me.Angelo.movieapp.models.Movie
+import me.Angelo.movieapp.models.MovieDetail
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -32,6 +33,15 @@ class MovieService {
         return response.search ?: emptyList()
     }
 
+    suspend fun getMovieDetail(imdbID: String): MovieDetail {
+        return client.get("https://www.omdbapi.com/") {
+            url {
+                parameters.append("apikey", "62e795df")
+                parameters.append("i", imdbID)
+                parameters.append("plot", "full")
+            }
+        }.body()
+    }
 
     @Serializable
     data class OMDbResponse(
