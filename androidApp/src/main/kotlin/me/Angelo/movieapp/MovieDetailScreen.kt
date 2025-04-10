@@ -8,11 +8,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import me.Angelo.movieapp.models.MovieDetail
 import me.Angelo.movieapp.service.MovieService
 import androidx.compose.ui.Alignment
-
-
+import me.Angelo.movieapp.domain.models.MovieDetail
 
 
 @OptIn(ExperimentalMaterial3Api::class)

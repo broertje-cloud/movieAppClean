@@ -1,4 +1,4 @@
-package me.Angelo.movieapp.models
+package me.Angelo.movieapp.domain.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -14,5 +14,3 @@ data class MovieDetail(
     @SerialName("Poster") val poster: String,
     @SerialName("imdbRating") val rating: String
 )
-
-

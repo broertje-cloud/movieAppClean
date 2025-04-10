@@ -1,4 +1,4 @@
-package me.Angelo.movieapp.models
+package me.Angelo.movieapp.domain.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

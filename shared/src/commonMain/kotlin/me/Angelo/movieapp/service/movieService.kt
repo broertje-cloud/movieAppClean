@@ -1,7 +1,5 @@
 package me.Angelo.movieapp.service
 
-import me.Angelo.movieapp.models.Movie
-import me.Angelo.movieapp.models.MovieDetail
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -10,11 +8,13 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import me.Angelo.movieapp.domain.models.Movie
+import me.Angelo.movieapp.domain.models.MovieDetail
 
 class MovieService {
 
 
-    private val client = HttpClient {
+    val client = HttpClient {
         install(ContentNegotiation) {
             json(Json {
                 ignoreUnknownKeys = true
