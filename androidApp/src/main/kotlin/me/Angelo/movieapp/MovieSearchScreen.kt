@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.items
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
-import kotlinx.coroutines.launch
+import me.Angelo.movieapp.controller.MovieSearchController
 import me.Angelo.movieapp.domain.models.Movie
 import me.Angelo.movieapp.service.MovieService
 
@@ -22,9 +22,11 @@ fun movieSearchScreen(onMovieClick: (Movie) -> Unit)
     var query by remember { mutableStateOf("") }
     var movies by remember { mutableStateOf(listOf<Movie>()) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
-    val coroutineScope = rememberCoroutineScope()
+     val coroutineScope = rememberCoroutineScope()
+     val controller = remember { MovieSearchController(coroutineScope, MovieService()) }
 
-    Column(
+
+     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
@@ -40,16 +42,12 @@ fun movieSearchScreen(onMovieClick: (Movie) -> Unit)
 
         Button(
             onClick = {
-                coroutineScope.launch {
-                    errorMessage = null
-                    try {
-                        val results = MovieService().searchMovies(query)
-                        movies = results
-                    } catch (e: Exception) {
-                        errorMessage = "Fout bij ophalen: ${e.localizedMessage}"
-                        movies = emptyList()
-                    }
-                }
+                errorMessage = null
+                controller.searchMovies(
+                    query = query,
+                    onSuccess = { movies = it },
+                    onError = { errorMessage = it }
+                )
             },
             modifier = Modifier.fillMaxWidth()
         ) {
